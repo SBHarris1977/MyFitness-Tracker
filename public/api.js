@@ -1,3 +1,7 @@
+//var express = require("express");
+//var http = require("http");
+//var workouts = require("./workout");
+
 const API = {
   async getLastWorkout() {
     let res;
