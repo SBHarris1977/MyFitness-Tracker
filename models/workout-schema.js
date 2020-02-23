@@ -5,12 +5,14 @@ const Schema = mongoose.Schema;
 const WorkoutSchema = new Schema({
     day: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: true
     },
     exercises: [{
       
         type: {
-            type: String
+            type: String,
+            enum: ["resistance", "cardio"]
     },
         name: {
             type: String,
@@ -40,6 +42,6 @@ const WorkoutSchema = new Schema({
 });
 
 
-const workout = mongoose.model("workout", WorkoutSchema);
+const Workout = mongoose.model("Workout", WorkoutSchema);
 
-module.exports = workout;
+module.exports = Workout;

@@ -1,6 +1,6 @@
 // Exporting an object containing all of our models
 
 module.exports = {
-    workout: require("./workout-schema")
+    Workout: require("./workout-schema")
     
   };

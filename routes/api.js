@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Workout = require("../models/workout-schema");
-const path = require("path");
+var path = require("path");
 
 //exports.index = function(req, res) {
  //   Workout.find({}, function(err, docs) {
@@ -12,10 +12,30 @@ const path = require("path");
   //  });
 //}
 
+router.get("/api/workouts", (req, res) => {
+   Workout.find({}, (err, data) => {
+      if (err) throw err;
+    else {
+        res.send(data);
+      }
+ });
+});
 
+router.get("/exercise", function(req, res) {
+    res.sendFile(path.join(__dirname, "..//public//exercise.html"));
+
+});
+
+router.get("/stats", function(req, res) {
+    res.sendFile(path.join(__dirname, "..//public//stats.html"));
+});
+
+router.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "..//public//stats.html"));
+});
 
 router.post("/api/workouts", ({ body }, res) => {
-    console.log("hello")
+    console.log("post to ${body}")
     Workout.create(body)
         .then(dbWorkout => {
         res.json(dbWorkout);
@@ -38,20 +58,39 @@ router.get("/api/workouts", (req, res) => {
                 res.status(400).json(err);
             });
 });
-router.get("/excercise", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/excercise.html"));
-});
 
-router.get("/stats", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/stats.html"));
-});
 
 router.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+    res.sendFile(path.join(__dirname, "..//public//index.html"));
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-Workout.update({_id: req.params.id}, { $set: { workout: req.body }})
-})
+Workout.update({_id: req.params.id}, { $set: { workout: req.body } },
+   (error, data) => {
+     if (error) {
+          console.log(error);
+          res.send(error);
+       } else {
+        console.log(data);
+         res.send(data);
+      }
+ }
+)
+});
+
+router.get("/api/workouts/range", (req, res) => {
+    Workout.find({})
+    .sort({ date: -1 })
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+
+    })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+        
+    })
+    
+
 
 module.exports = router;
