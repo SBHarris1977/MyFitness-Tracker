@@ -2,16 +2,6 @@ const router = require("express").Router();
 const Workout = require("../models/workout-schema.js");
 var path = require("path");
 
-//exports.index = function(req, res) {
-//   Workout.find({}, function(err, docs) {
-//       if(!err) {
-//            res.json(400, { workouts: docs});
-//      } else {
-//          res.json(500, { message: err});
-//     }
-//  });
-//}
-
 router.get("/api/workouts", (req, res) => {
   Workout.find({}, (err, data) => {
     if (err) throw err;
@@ -28,10 +18,6 @@ router.get("/exercise", function(req, res) {
 router.get("/stats", function(req, res) {
   res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
-
-//router.get("/", function(req, res) {
-// res.sendFile(path.join(__dirname, "../public/stats.html"));
-//});
 
 router.post("/api/workouts", (req, res) => {
   console.log(res);
