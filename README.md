@@ -18,3 +18,8 @@ The user should be able to:
 1. Add excercises to previous workout plan.
 2. Add new excercises to a new workout plan.
 3. View multiple excercises and combined weights o the stats page.
+
+Technology:
+1. Express
+2. MongoDB
+3. NODEJS
