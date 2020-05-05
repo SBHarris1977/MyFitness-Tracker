@@ -23,3 +23,5 @@ Technology:
 1. Express
 2. MongoDB
 3. NODEJS
+
+[![Watch video here!](https://github.com/SBHarris1977/MyFitness-Tracker/blob/master/public/Fitness%20Tracker%20(1).webm)
